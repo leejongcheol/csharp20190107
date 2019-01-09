@@ -1,19 +1,30 @@
-﻿using System;
-namespace OperatorTest{
-    class Add    {
-        public int Value { get; set; }
-        public static Add operator +(Add a1, Add a2)   {
-            Add a3 = new Add();
-            a3.Value = a1.Value + a2.Value;
-            return a3;
-        }
+﻿class Emp
+{
+    public int sal;
+    public static bool operator >=(Emp e1, Emp e2)
+    {
+        return (e1.sal >= e2.sal);
     }
-    class Program    {
-        static void Main(string[] args)        {
-            Add a1 = new Add();  a1.Value = 1;
-            Add a2 = new Add();  a2.Value = 2;
-            Add a3 = a1 + a2;
-            Console.WriteLine(a3.Value);
+    public static bool operator <=(Emp e1, Emp e2)
+    {
+        return !(e1.sal >= e2.sal);
+    }
+}
+class Test
+{
+    static void Main(string[] args)
+    {
+        Emp e1 = new Emp();
+        e1.sal = 1000;
+        Emp e2 = new Emp();
+        e2.sal = 2000;
+        if (e1 >= e2)
+        {
+            Console.WriteLine("e1이 크다 {0} >= {1}", e1.sal, e2.sal);
+        }
+        else
+        {
+            Console.WriteLine("e2가 크다 {0} < {1}", e1.sal, e2.sal);
         }
     }
 }
